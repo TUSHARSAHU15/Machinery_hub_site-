@@ -1,5 +1,16 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  BookOpen,
+  Printer,
+  Scissors,
+  Wrench,
+  CheckCircle2,
+  Sparkles,
+} from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
 import { EnquiryForm } from '../components/EnquiryForm';
 import { WhatsAppIcon } from '../components/WhatsAppIcon';
@@ -13,6 +24,29 @@ export const ContactPage: React.FC = () => {
     { i: Clock, l: 'Business Hours', v: COMPANY_INFO.hours },
   ];
 
+  const servicesProvided = [
+    {
+      icon: BookOpen,
+      title: 'Note Book Industry Machines',
+      desc: 'Automatic reel-to-book & semi-auto lines',
+    },
+    {
+      icon: Printer,
+      title: 'Offset Press Machines',
+      desc: 'Sheet-fed single & multi-colour presses',
+    },
+    {
+      icon: Scissors,
+      title: 'Paper Related All Machines',
+      desc: 'Hydraulic cutting, binding & processing',
+    },
+    {
+      icon: Wrench,
+      title: 'Installation & Technical Support',
+      desc: 'Certified engineers, training & spare parts',
+    },
+  ];
+
   return (
     <>
       <PageHeader
@@ -22,24 +56,53 @@ export const ContactPage: React.FC = () => {
       />
 
       <section className="container-x grid gap-10 py-20 lg:grid-cols-[1fr_1.4fr]">
-        {/* Left Side: Contact Details, WhatsApp button, Map, Nepali Welcome */}
+        {/* Left Side: Professional Welcome Card, Contact Details, WhatsApp button, Map */}
         <div className="space-y-4">
-          {/* Nepali Welcome Box */}
-          <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 shadow-card">
-            <h3 className="font-bold text-foreground text-base">
-              🙏 नमस्ते! Machinery Hub मा तपाईंलाई हार्दिक स्वागत छ।
+          {/* Professional Welcome & Capabilities Card */}
+          <div className="overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-card via-card to-accent/20 p-6 shadow-card transition-all">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+                <Sparkles className="h-3.5 w-3.5" />
+                हाम्रो सेवाहरू • Machinery Solutions
+              </span>
+            </div>
+
+            <h3 className="mt-3 font-display text-xl font-extrabold leading-snug text-foreground">
+              नमस्ते! Machinery Hub मा तपाईंलाई हार्दिक स्वागत छ।
             </h3>
-            <p className="mt-2 text-sm text-muted-foreground font-medium">
-              हामीबाट तपाईंले प्राप्त गर्न सक्नुहुन्छ:
+            <p className="mt-1.5 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              हामी नेपालभर नोट बुक उद्योग, अफसेट प्रेस र कागज प्रशोधन सम्बन्धी आधुनिक मेसिनरी तथा
+              दक्ष प्राविधिक सेवाहरू उपलब्ध गराउँछौं।
             </p>
-            <ul className="mt-2 space-y-1 text-sm font-semibold text-foreground">
-              <li>✅ Note Book Industry Machines</li>
-              <li>✅ Offset Press Machines</li>
-              <li>✅ Paper Related All Machines</li>
-              <li>✅ Installation & Technical Support</li>
-            </ul>
+
+            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+              {servicesProvided.map(({ icon: Icon, title, desc }) => (
+                <div
+                  key={title}
+                  className="group flex items-start gap-3 rounded-xl border border-border/80 bg-background/60 p-3 transition hover:border-primary/50 hover:bg-card"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber-gradient text-primary-foreground shadow-sm">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs sm:text-sm font-bold text-foreground leading-tight">
+                      {title}
+                    </p>
+                    <p className="mt-0.5 text-[11px] text-muted-foreground leading-tight">
+                      {desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-5 flex items-center gap-2 border-t border-border/60 pt-3.5 text-xs font-semibold text-muted-foreground">
+              <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+              <span>नेपालभर डेलिभरी, जडान, तालिम तथा जेन्युन पार्ट्सको सुविधा</span>
+            </div>
           </div>
 
+          {/* Contact Details List */}
           {contactDetails.map(({ i: Icon, l, v }) => (
             <div
               key={l}
